@@ -38,23 +38,23 @@ and open the template in the editor.
                         
                         for(var i = 0; i < entidades.length; i++){
                             var miEntidad = entidades[i];
-                            var propietario = miEntidad.propierties.propietario;
-                            var altura = miEntidad.propierties.altura;
+                            var altura = miEntidad.properties.altura;
+                            var propietario = miEntidad.properties.propietario;
                             var color = matrizColores[propietario];
                             if (!color){
                                 color = Cesium.Color.fromRandom(
                                         {
-                                            alpha: 1.0
+                                            alpha: 0.4
                                         });
                                 matrizColores[propietario] = color;
                             }
-                            
+                            miEntidad.polygon.height = 0;
+                            miEntidad.polygon.extrudedHeight = miEntidad.properties.altura;
                             miEntidad.polygon.material = color;
                             miEntidad.polygon.outline = false;
                             
                             var posicion = miEntidad.polygon.hierarchy.getValue().positions[0];
-                            miEntidad.polygon.height = 0;
-                            miEntidad.polygon.extrudedHeight = miEntidad.propierties.altura;
+                            
                         }
                        
                     }
